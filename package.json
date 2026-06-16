@@ -1,0 +1,20 @@
+{
+  "name": "semina-notepad",
+  "version": "1.0.0",
+  "description": "에버노트 스타일 개인 마크다운 메모장 (TURSO + Render)",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "@libsql/client": "^0.14.0",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.2",
+    "express-session": "^1.18.1"
+  }
+}

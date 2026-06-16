@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>semina · 메모장</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Pretendard:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <!-- 마크다운 에디터 + 렌더러 (CDN) -->
+    <link rel="stylesheet" href="https://unpkg.com/easymde/dist/easymde.min.css" />
+    <script defer src="https://unpkg.com/easymde/dist/easymde.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <!-- 로그인 화면 -->
+    <div id="login-screen" class="login-screen" hidden>
+      <form id="login-form" class="login-card">
+        <h1 class="login-title">semina</h1>
+        <p class="login-sub">나만의 메모장</p>
+        <input
+          id="password-input"
+          type="password"
+          placeholder="비밀번호"
+          autocomplete="current-password"
+        />
+        <button type="submit">들어가기</button>
+        <p id="login-error" class="login-error" hidden></p>
+      </form>
+    </div>
+
+    <!-- 메인 앱 (3단 레이아웃) -->
+    <div id="app" class="app" hidden>
+      <!-- 1단: 사이드바 (노트북 + 태그) -->
+      <aside class="sidebar">
+        <div class="brand">
+          <span class="brand-mark">📝</span>
+          <span class="brand-name">semina</span>
+        </div>
+
+        <button id="all-notes-btn" class="nav-item active">전체 메모</button>
+
+        <div class="nav-section">
+          <div class="nav-section-head">
+            <span>노트북</span>
+            <button id="add-notebook-btn" title="노트북 추가">＋</button>
+          </div>
+          <ul id="notebook-list" class="nav-list"></ul>
+        </div>
+
+        <div class="nav-section">
+          <div class="nav-section-head"><span>태그</span></div>
+          <ul id="tag-list" class="nav-list tag-list"></ul>
+        </div>
+
+        <button id="logout-btn" class="logout-btn">로그아웃</button>
+      </aside>
+
+      <!-- 2단: 노트 목록 -->
+      <section class="note-list-pane">
+        <div class="list-header">
+          <input id="search-input" type="search" placeholder="검색…" />
+          <button id="new-note-btn" class="new-note-btn" title="새 메모">＋ 새 메모</button>
+        </div>
+        <ul id="note-list" class="note-list"></ul>
+        <p id="empty-list" class="empty-list" hidden>메모가 없어요. 새 메모를 만들어 보세요.</p>
+      </section>
+
+      <!-- 3단: 에디터 -->
+      <main class="editor-pane">
+        <div id="editor-empty" class="editor-empty">
+          <p>왼쪽에서 메모를 고르거나<br />새 메모를 만들어 보세요.</p>
+        </div>
+        <div id="editor-area" class="editor-area" hidden>
+          <input id="note-title" class="note-title" placeholder="제목" />
+          <div class="note-meta-row">
+            <select id="note-notebook" class="note-notebook"></select>
+            <input id="note-tags" class="note-tags" placeholder="태그 (쉼표로 구분)" />
+          </div>
+          <textarea id="note-content"></textarea>
+          <div class="editor-footer">
+            <span id="save-status" class="save-status"></span>
+            <button id="delete-note-btn" class="delete-btn">삭제</button>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script defer src="/app.js"></script>
+  </body>
+</html>
